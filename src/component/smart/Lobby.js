@@ -4,6 +4,7 @@ import ChatText from "../ChatText";
 import GuestList from "../GuestList";
 
 class Lobby extends React.Component {
+    
     render(){
         return (
             <div>
