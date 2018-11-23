@@ -5,7 +5,7 @@ const chatCanvas = (props) => {
         <div className="col-md-12">
             {
                 props.chatTexts.map((ct) => (
-                    <p className="m-3">{ct}</p>
+                    <p key={new Date().getUTCMilliseconds} className="m-3">{ct}</p>
                 ))
             }
         </div>
