@@ -15,9 +15,6 @@ class Router extends Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/' component={ App } />
-                    <Route path='/home' component={ Home } />
-                    <Route path='/stuff' component={ Stuff } />
-
                     <Redirect from='*' to='/' />
                 </Switch>
             </BrowserRouter>
