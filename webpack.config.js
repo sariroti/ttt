@@ -1,5 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-
+const webpack = require("webpack");
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
   filename: "./index.html"
@@ -16,10 +16,21 @@ module.exports = {
           }
         },
         {
+          test: /\.(png|woff|woff2|eot|ttf|otf|svg)$/, 
+          loader: 'url-loader?limit=100000'
+        },
+        {
           test: /\.css$/,
           use: ["style-loader", "css-loader"]
         }
       ]
     },
-    plugins:[htmlPlugin]
+    plugins:[
+      htmlPlugin,
+      new webpack.ProvidePlugin({   
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery'
+    })
+    ]
   };

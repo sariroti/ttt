@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
+import SocketContext from "../context/SocketContext"
+import MainMenu from "./MainMenu";
 import ChatCanvas from "../ChatCanvas";
 import ChatText from "../ChatText";
 import GuestList from "../GuestList";
@@ -114,7 +116,13 @@ class Lobby extends React.Component {
     render(){
         return (
             <div>
-                <div className="col-md-12 ">
+                <SocketContext.Provider value={this.state.ioClient}>
+                    <MainMenu />
+                    <ChatCanvas chatTexts={this.state.chatTexts} />
+                    <ChatText onTextChange={this.handleTextChanged} onTextTyped={this.handleTextTyped}/>
+                    <GuestList guests={this.state.guestList} />
+                </SocketContext.Provider>
+                {/* <div className="col-md-12 ">
                     <input type="text" value={this.state.playerName} onChange={this.onPlayerNameChanged}/>
                     <button onClick={this.onPlayerNameBtnClick}>Enter Name</button>
                 </div>
@@ -123,10 +131,8 @@ class Lobby extends React.Component {
                     <input type="text" value={this.state.roomPassword} onChange={this.onRoomPasswordChanged}/>
                     <button onClick={this.onRoomNameBtnClick}>CreateRoom</button>
                     <button onClick={this.onJoinRoomBtnClick}>JoinRoom</button>
-                </div>
-                <ChatCanvas chatTexts={this.state.chatTexts} />
-                <ChatText onTextChange={this.handleTextChanged} onTextTyped={this.handleTextTyped}/>
-                <GuestList guests={this.state.guestList} />
+                </div> */}
+               
             </div>
         )
     }
